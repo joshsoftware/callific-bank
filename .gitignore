@@ -15,3 +15,8 @@
 /log/*
 !/log/.keep
 /tmp
+/public/assets
+/public/uploads
+/dump
+/config/secrets.yml
+/coverage
