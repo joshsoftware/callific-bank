@@ -1,0 +1,23 @@
+.row
+  .col.s4.offset-s4
+    = form_for resource, as: resource_name, url: session_path(resource_name), html: {class: 'form-signin'} do |f|
+      .row
+        h4.center-align Login
+        .login-wrap
+          .input-field
+            = f.text_field :email
+            label for="user_login"  Email
+          .input-field
+            = f.password_field :password, autocomplete: "off"
+            label for="user_password"  Password
+      .row
+        - if devise_mapping.rememberable?
+          .col.s6
+            .input-field
+              = f.check_box :remember_me
+              label for="user_remember_me"  Remember Me
+          .col.s6.right-align
+            = render "devise/shared/links"
+      .row
+        br
+        = f.button "Login in", class: 'btn waves-effect waves-light col s4'

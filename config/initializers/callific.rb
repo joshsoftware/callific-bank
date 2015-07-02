@@ -1,0 +1,1 @@
+REDIS_CLIENT = Redis.new(db: 1)

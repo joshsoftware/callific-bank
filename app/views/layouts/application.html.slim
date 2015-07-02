@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Callific Data Generator
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    section#container
+      = render 'shared/header'
+      section.main-content
+        section.wrapper
+          .messages= render 'shared/flash_message'
+          .main-body= yield
+      /= render 'shared/footer'

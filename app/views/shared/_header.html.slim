@@ -1,0 +1,13 @@
+nav
+  .nav-wrapper
+    a.brand-logo href=root_path  Callific
+    ul#nav-mobile.right.hide-on-med-and-down
+      - unless user_signed_in?
+        li= link_to 'login', new_user_session_path
+        /li= link_to 'SignUp', new_user_registration_path
+      - else
+        li= link_to ' Dashboard', root_path, class: 'fa fa-dashboard'
+        li
+          = link_to ' Sign Out', destroy_user_session_path, method: :delete, class: 'fa fa-key'
+        li
+          = link_to ' Edit', edit_user_registration_path, class: 'fa fa-edit'

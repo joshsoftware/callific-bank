@@ -1,0 +1,25 @@
+= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-signin'}) do |f|
+  h2.form-signin-heading
+    | Sign Up
+  .login-wrap
+    = devise_error_messages!
+    .form-group
+      = f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name'
+    .form-group
+      = f.email_field :email, class: 'form-control', placeholder: 'Enter Email'
+    /= fields_for :company do |c|
+    /  .form-group
+    /    = c.text_field :company, class: 'form-control', placeholder: 'Company Name'
+    /  .form-group
+    /    = c.text_field :subdomain, class: 'form-control', placeholder: 'Subdomain'
+    .form-group
+      = f.text_field :mobile, class: 'form-control', placeholder: 'Mobile'
+    .form-group
+      = f.text_field :login, class: 'form-control', placeholder: 'Login Id'
+    .form-group
+      = f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password'
+    .form-group
+      = f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Confirm Password'
+    .form-group.text-center
+      = f.submit "Submit", class: 'btn btn-lg btn-login btn-block'
+    = render "devise/shared/links"

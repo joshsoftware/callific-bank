@@ -1,0 +1,8 @@
+.col-md-offset-4.col-md-4
+	= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'form-signin' }, defaults: { input_html: { class: 'form-control' }}) do |f|
+		h2.form-signin-heading 
+			| Forgot your password?
+		.login-wrap
+			= f.input :email, autofocus: true, placeholder: 'Enter Your Email' 	
+		 	= f.submit "Send me reset password instructions", class: 'btn btn-md btn-login btn-block'
+			= render "devise/shared/links"

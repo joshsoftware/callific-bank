@@ -1,0 +1,10 @@
+.col-md-offset-4.col-md-4
+  = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put , class: 'form-signin'}, defaults: { input_html: { class: 'form-control' }}) do |f|
+    h2.form-signin-heading
+      | Change your password
+    .login-wrap
+      = f.hidden_field :reset_password_token
+      = f.input :password, autofocus: true, class: 'form-control', autocomplete: "off", placeholder: 'New Password'
+      = f.input :password_confirmation, class: 'form-control', autocomplete: "off", placeholder: 'Confirm Password'
+      = f.submit "Change my password", class: 'btn btn-md btn-login btn-block'
+      = render "devise/shared/links"
