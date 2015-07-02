@@ -7,13 +7,13 @@ class DealerUpload
     @user_email = user_email
   end
 
-  def import_dealer_data(rto_file)
+  def import_dealer_data
     headers = get_headers(@spreadsheet)
     read_rto_data(headers, rto_file)
     UserMailer.send_dealer_data_upload_status(@file_path, @user_email).deliver_now
   end
 
-  def read_rto_data(headers, rto_file)
+  def read_rto_data(headers)
     matched_records = []
 
     (2..@spreadsheet.last_row).each do |index|

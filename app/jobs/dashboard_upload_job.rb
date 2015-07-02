@@ -28,9 +28,8 @@ class DashboardUploadJob < ActiveJob::Base
   end
 
   def dealer_sheet_upload(file_path, user_email)
-    dealer_file = File.open(file_path, 'r')
     upload_obj = DealerUpload.new(file_path, user_email)
-    upload_obj.import_dealer_data(dealer_file)
+    upload_obj.import_dealer_data
   end
 
 end
