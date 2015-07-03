@@ -29,7 +29,7 @@ class DashboardController < ApplicationController
   def rto_sheet_upload(file)
     upload_type = params[:upload_type]
     if check_file_extension(file)
-      job = DashboardUploadJob.perform_later(
+      job = DashboardUploadJob.perform_now(
         file.path, upload_type,
         current_user.email
       )
