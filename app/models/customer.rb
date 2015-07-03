@@ -10,6 +10,8 @@ class Customer
 
   field :record, type: Hash
 
+  index({'record.registration_no' => 1}, {unique: true, background: true})
+
   def as_indexed_json(options = {})
     record
   end

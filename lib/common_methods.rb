@@ -1,21 +1,5 @@
 module CommonMethods
 
-  def get_regex(string, check_words)
-    check_words.select do |element| 
-      string =~ /#{element}/
-    end
-    .blank? ? /^(?!\s?\b(non|only|except)\b\s).*\b#{string}\b/i : 
-              /^\s*\b(non|only|except)\b\s+#{string.split[1]}.*/i
-  end
-
-  def get_index_name(index_name, company_subdomain)
-    (
-      Company.current_id ? Company.find(
-      Company.current_id
-      ).subdomain : company_subdomain || 'callific'
-    ) + "_#{index_name}"
-  end
-
   def find_full_vendor_name(string)
     YAML.load_file("#{Rails.root}/config/vendor_list.yml")
     .select do |insurance_names|
@@ -33,7 +17,7 @@ module CommonMethods
       key_class = hash[key].class
       unless key_class.eql?(Array)
         hash[key] = key_class.eql?(String) ? 
-                    hash[key].squish : hash[key].to_s.gsub(/\.0$/,'')
+                    hash[key].squish.upcase : hash[key].to_s.gsub(/\.0$/,'')
       else
         hash[key] = hash[key].map do |each_hash| 
           hash_values_to_string(each_hash)

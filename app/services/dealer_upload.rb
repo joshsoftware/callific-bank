@@ -9,7 +9,7 @@ class DealerUpload
 
   def import_dealer_data
     headers = get_headers(@spreadsheet)
-    read_rto_data(headers, rto_file)
+    read_rto_data(headers)
     UserMailer.send_dealer_data_upload_status(@file_path, @user_email).deliver_now
   end
 
@@ -71,7 +71,7 @@ class DealerUpload
                 },
                 {
                   query_string: {
-                    query: and_regex_query_for(record, ['chasis_no', 'engine_no']),
+                    query: regex_query_for(record, ['chasis_no', 'engine_no']),
                     boost: 100
                   }
                 }
@@ -91,7 +91,7 @@ class DealerUpload
     merge_matched_and_rto_data(match_found, record)
   end
 
-  def and_regex_query_for(record, fields)
+  def regex_query_for(record, fields)
     fields.each_with_index.reduce('') do |query, (field, index)|
       query += "#{field}:*#{record[field].split.first}#{' AND ' unless index.eql?(fields.length - 1)}"
     end
@@ -114,11 +114,11 @@ class DealerUpload
 
   def merge_matched_and_rto_data(match_found, record)
     merged_data = match_found && record.merge(
-      match_found._source(
+      match_found._source.as_json(
         except: [
         'customer_name', 'address', 'primary_phone', 'other_phone', 'mobile'
         ]
-      ).merge(score: match_found._score)
+      )
     )
 
     @new_header ||= merged_data.keys.map(&:humanize)

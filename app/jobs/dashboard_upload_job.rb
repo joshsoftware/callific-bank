@@ -22,9 +22,8 @@ class DashboardUploadJob < ActiveJob::Base
   end
 
   def rto_sheet_upload(file_path, user_email)
-    rto_file = File.open(file_path, 'r')
     upload_obj = RtoUpload.new(file_path, user_email)
-    upload_obj.import_rto_data(rto_file)
+    upload_obj.import_rto_data
   end
 
   def dealer_sheet_upload(file_path, user_email)
