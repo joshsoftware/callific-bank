@@ -5,7 +5,8 @@ class RtoUpload
     @spreadsheet = open_file(file_path)
     @user_email = user_email
     @error_file_path = Rails.root + "public/uploads/rto_error_report_file.csv"
-    @flag = false
+    @total_uploaded = 0
+    @error_records = []
   end
 
   def import_rto_data
@@ -14,9 +15,8 @@ class RtoUpload
   end
 
   def read_rto_data(headers)
-    error_records = []
     begin
-      (2..@spreadsheet.last_row).reduce(error_records) do |errors, index|
+      (2..@spreadsheet.last_row).reduce(@error_records) do |errors, index|
         record = Hash[
           [
             headers,
@@ -25,11 +25,21 @@ class RtoUpload
         ]
 
         hash_values_to_string(record)
-        create_customer(record) ? errors : (errors << record.merge('errors' => @errors))
+        
+        create_customer(record) ? (
+            @total_uploaded += 1 and errors
+          ) : (errors << record.merge('errors' => @errors))
       end
     ensure
-      create_error_file(error_records) if error_records.present?
+      generate_and_send_upload_status
     end
+  end
+
+  def generate_and_send_upload_status
+    create_error_file(@error_records) if @error_records.present?
+    UserMailer.send_rto_data_upload_status(
+      @error_file_path, @user_email, @total_uploaded, @error_records.count
+    ).deliver_now
   end
 
   def create_customer(record)
@@ -61,13 +71,12 @@ class RtoUpload
   end
 
   def create_error_file(error_records)
-    CSV.open(
-      @error_file_path, 'w', write_headers: true,
-      headers: error_records.first.keys.map(&:humanize)
-    ) do |write|
-      error_records.each{|record| write << record.values}
-      @flag = true
+    p = Axlsx::Package.new
+    p.workbook.add_worksheet(:name => "Error File") do |sheet|
+      sheet.add_row error_records.first.keys.map(&:humanize)
+      error_records.each{|record| sheet.add_row record.values}
     end
+    p.serialize(@error_file_path)
   end
 
 end

@@ -34,7 +34,7 @@ class DealerUpload
 
   def store_corrected_data(matched_records)
     p = Axlsx::Package.new
-    p.workbook.add_worksheet(:name => "Basic Worksheet") do |sheet|
+    p.workbook.add_worksheet(:name => "Matched Dealer Data") do |sheet|
       insert_matched_records(matched_records, sheet)
     end
     p.serialize(@file_path)
