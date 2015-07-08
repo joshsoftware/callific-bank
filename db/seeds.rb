@@ -1,28 +1,29 @@
+=begin
+  #Create Insurance Vendor
+    vendors = YAML.load_file("#{Rails.root}/config/vendor_list.yml")
 
-#Create Insurance Vendor
-  vendors = YAML.load_file("#{Rails.root}/config/vendor_list.yml")
+    vendors.each do |iv|
+      InsuranceVendor.find_or_create_by(vendor_name: iv)
+    end
 
-  vendors.each do |iv|
-    InsuranceVendor.find_or_create_by(vendor_name: iv)
-  end
+  #Create RTO
+    rto_names = [
+      "NAGPUR", "PCMC", "PUNE", "HYDERABAD", "WARDHA", "ANDHERI", "TARDEO",
+      "WORLI", "THANE", "AURANGABAD", "RAIGAD", "VASHI", "AHMEDNAGAR", "DELHI",
+      "SHRIRAMPUR", "SATARA", "NASHIK", "AKLUJ", "LATUR", "BARAMATI", "PARBHANI",
+      "CHANDIGARH", "RATNAGIRI", "KOLHAPUR", "SOLAPUR", "JALGAON", "SANGLI",
+      "BHOPAL", "AKOLA", "GONDIYA", "DHULE", "KALYAN", "MALEGAON", "KARAD",
+      "HINGOLI", "BEED"]
 
-#Create RTO
-  rto_names = [
-    "NAGPUR", "PCMC", "PUNE", "HYDERABAD", "WARDHA", "ANDHERI", "TARDEO",
-    "WORLI", "THANE", "AURANGABAD", "RAIGAD", "VASHI", "AHMEDNAGAR", "DELHI",
-    "SHRIRAMPUR", "SATARA", "NASHIK", "AKLUJ", "LATUR", "BARAMATI", "PARBHANI",
-    "CHANDIGARH", "RATNAGIRI", "KOLHAPUR", "SOLAPUR", "JALGAON", "SANGLI",
-    "BHOPAL", "AKOLA", "GONDIYA", "DHULE", "KALYAN", "MALEGAON", "KARAD",
-    "HINGOLI", "BEED"]
-
-  rto_names.each do |name|
-    Rto.find_or_create_by( 
-      city: name, name: name, state: "TEST STATE"
-    )
-  end
+    rto_names.each do |name|
+      Rto.find_or_create_by( 
+        city: name, name: name, state: "TEST STATE"
+      )
+    end
+=end
 
 #create Users
-  # Super ADMIN
+  #ADMIN
   User.find_or_create_by!(
     email: "admin@callific.com",
     password: 'josh1234', 

@@ -151,6 +151,11 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.8.2)
     mime-types (2.6.1)
+    mina (0.3.6)
+      open4 (~> 1.3.4)
+      rake
+    mina-sidekiq (0.3.1)
+      mina
     mini_portile (0.6.2)
     minitest (5.7.0)
     mongoid (4.0.2)
@@ -176,11 +181,15 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     nprogress-rails (0.1.6.7)
+    open4 (1.3.4)
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
     parser (2.2.2.5)
       ast (>= 1.1, < 3.0)
+    passenger (5.0.13)
+      rack
+      rake (>= 0.8.1)
     procto (0.0.2)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -363,11 +372,14 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   materialize-sass
+  mina
+  mina-sidekiq
   mongoid (~> 4.0.0)
   mongoid-history
   mongoid-rspec
   nested_form
   nprogress-rails
+  passenger
   pry
   rails (= 4.2.2)
   remotipart (~> 1.2)
@@ -388,4 +400,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.4
+   1.10.5
