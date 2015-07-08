@@ -91,8 +91,11 @@ task :deploy => :environment do
 
     to :launch do
       queue "mkdir -p #{deploy_to}/current/tmp"
-      queue "cd #{deploy_to}/current && RAILS_ENV=#{env} bundle exec whenever --clear-crontab"
-      queue "cd #{deploy_to}/current && RAILS_ENV=#{env} bundle exec whenever --write-crontab"
+      
+      # uncomment to use whenever
+      #queue "cd #{deploy_to}/current && RAILS_ENV=#{env} bundle exec whenever --clear-crontab"
+      #queue "cd #{deploy_to}/current && RAILS_ENV=#{env} bundle exec whenever --write-crontab"
+      
       queue "touch #{deploy_to}/current/tmp/restart.txt"
       #invoke :'sidekiq:restart'
 
