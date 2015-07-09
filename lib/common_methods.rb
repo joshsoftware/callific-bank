@@ -50,7 +50,7 @@ module CommonMethods
   end
 
   def get_headers(spreadsheet)
-    spreadsheet.row(1).reject(&:blank?).reduce([]){
+    spreadsheet.row(1).map(&:to_s).reduce([]){
       |arr, attribute| arr << attribute.try(:gsub, /\s+/, '_').try(:underscore)
     }
   end
