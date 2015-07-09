@@ -25,7 +25,7 @@
 #create Users
   #ADMIN
   User.find_or_create_by!(
-    email: "admin@callific.com",
+    email: "admin@callific.in",
     password: 'josh1234', 
     password_confirmation: 'josh1234'
   )

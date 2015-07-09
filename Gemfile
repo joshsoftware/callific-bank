@@ -55,7 +55,7 @@ gem 'remotipart', '~> 1.2'
 gem "devise", '~> 3.4.1'
 gem "slim", "~> 3.0.1"
 gem "slim-rails"
-gem "bson_ext"
+#gem "bson_ext"
 gem "mongoid", "~>4.0.0"
 gem 'mongoid-history'
 gem "rubycritic", :require => false
@@ -74,3 +74,4 @@ gem 'elasticsearch-rails', '~> 0.1.5'
 gem 'mina', '0.3.1'
 gem 'mina-sidekiq'
 gem 'passenger'
+gem 'mysql2'

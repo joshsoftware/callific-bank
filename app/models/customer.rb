@@ -9,6 +9,17 @@ class Customer
   index_name "callific_bank_#{Rails.env}_data"
 
   field :record, type: Hash
+  field :name
+  field :birth_date, type: Date
+  field :phone
+  field :mobile
+  field :other_phone
+  field :email
+  field :other_email
+  field :address
+  field :whom_to_contact
+
+  has_many :customer_cars
 
   index({'record.registration_no' => 1}, {unique: true, background: true})
 

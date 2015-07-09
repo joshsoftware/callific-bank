@@ -53,8 +53,7 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bson (3.1.0)
-    bson_ext (1.5.1)
+    bson (3.1.2)
     builder (3.2.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
@@ -85,24 +84,24 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.5)
     easy_diff (0.0.4)
-    elasticsearch (1.0.6)
-      elasticsearch-api (= 1.0.6)
-      elasticsearch-transport (= 1.0.6)
-    elasticsearch-api (1.0.6)
+    elasticsearch (1.0.12)
+      elasticsearch-api (= 1.0.12)
+      elasticsearch-transport (= 1.0.12)
+    elasticsearch-api (1.0.12)
       multi_json
-    elasticsearch-model (0.1.6)
+    elasticsearch-model (0.1.7)
       activesupport (> 3)
       elasticsearch (> 0.4)
       hashie
-    elasticsearch-persistence (0.1.6)
+    elasticsearch-persistence (0.1.7)
       activemodel (> 3)
       activesupport (> 3)
       elasticsearch (> 0.4)
       elasticsearch-model (>= 0.1)
       hashie
       virtus
-    elasticsearch-rails (0.1.6)
-    elasticsearch-transport (1.0.6)
+    elasticsearch-rails (0.1.7)
+    elasticsearch-transport (1.0.12)
       faraday
       multi_json
     equalizer (0.0.11)
@@ -113,7 +112,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    faraday (0.9.0)
+    faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     flay (2.4.0)
       ruby_parser (~> 3.0)
@@ -125,12 +124,12 @@ GEM
       railties (>= 3.2, < 5.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    hashie (3.3.2)
+    hashie (3.4.2)
     hitimes (1.2.2)
-    htmlentities (4.3.3)
+    htmlentities (4.3.4)
     i18n (0.7.0)
     ice_nine (0.11.1)
-    jbuilder (2.3.0)
+    jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (4.0.4)
@@ -145,7 +144,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    materialize-sass (0.96.2)
+    materialize-sass (0.97.0)
       sass (~> 3.3)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -175,8 +174,9 @@ GEM
       bson (~> 3.0)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
-    multi_json (1.11.1)
+    multi_json (1.11.2)
     multipart-post (2.0.0)
+    mysql2 (0.3.18)
     nested_form (0.3.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -185,7 +185,7 @@ GEM
     optionable (0.2.0)
     origin (2.1.1)
     orm_adapter (0.5.0)
-    parser (2.2.2.5)
+    parser (2.2.2.6)
       ast (>= 1.1, < 3.0)
     passenger (5.0.13)
       rack
@@ -227,7 +227,6 @@ GEM
     rainbow (2.0.0)
     rake (10.4.2)
     rdoc (4.2.0)
-      json (~> 1.4)
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -272,7 +271,7 @@ GEM
       reek (= 1.6.5)
       virtus (~> 1.0)
     rubyzip (1.0.0)
-    sass (3.4.14)
+    sass (3.4.15)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -316,7 +315,7 @@ GEM
     spring (1.3.6)
     sprockets (3.2.0)
       rack (~> 1.0)
-    sprockets-rails (2.3.1)
+    sprockets-rails (2.3.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
@@ -359,7 +358,6 @@ PLATFORMS
 
 DEPENDENCIES
   axlsx
-  bson_ext
   coffee-rails (~> 4.1.0)
   devise (~> 3.4.1)
   elasticsearch (~> 1.0.5)
@@ -377,6 +375,7 @@ DEPENDENCIES
   mongoid (~> 4.0.0)
   mongoid-history
   mongoid-rspec
+  mysql2
   nested_form
   nprogress-rails
   passenger
