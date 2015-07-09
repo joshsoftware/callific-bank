@@ -75,5 +75,3 @@ gem 'mina', '0.3.1'
 gem 'mina-sidekiq'
 gem 'passenger'
 gem 'mysql2'
-gem 'whenever', :require => false
-gem "daemons", git: "git@github.com:thuehlinger/daemons.git"
