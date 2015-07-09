@@ -52,20 +52,14 @@ class RtoUpload
 
   def is_invalid_record(record)
     #Convert MH12KY2080 to MH 12 KY 2080
-    registration_no = record['registration_no']
-                      .match(REGEXP_REG_NO).try(:captures).try(:join, ' ').to_s
-    record['registration_no'] = registration_no
+    record['registration_no'] = record['registration_no'].match(REGEXP_REG_NO)
+      .try(:captures).try(:join, ' ').to_s || "-NA-#{Time.now.to_i}"
 
-    valid_reg_no = registration_no
     customer_present = Customer.where(
-      'record.registration_no' => registration_no
+      'record.registration_no' => record['registration_no']
     ).first
 
-    @errors = (
-      customer_present ? "<Customer already present> " : ''
-      ) + (
-        valid_reg_no ? '' : '<Invalid Format for Registration No>'
-      )
+    @errors = customer_present ? "<Customer already present> " : ''
 
     @errors.present?
   end
