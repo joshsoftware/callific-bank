@@ -56,7 +56,7 @@ class RtoUpload
                       .match(REGEXP_REG_NO).try(:captures).try(:join, ' ').to_s
     record['registration_no'] = registration_no
 
-    valid_reg_no = registration_no.length.eql?(13)
+    valid_reg_no = registration_no
     customer_present = Customer.where(
       'record.registration_no' => registration_no
     ).first
