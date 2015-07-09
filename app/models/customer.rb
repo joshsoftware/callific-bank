@@ -6,7 +6,7 @@ class Customer
   after_save    { self.__elasticsearch__.index_document }
   after_destroy { self.__elasticsearch__.delete_document }
 
-  index_name "callific_#{Rails.env}_verification_data"
+  index_name "callific_bank_#{Rails.env}_data"
 
   field :record, type: Hash
 
