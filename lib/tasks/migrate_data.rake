@@ -3,7 +3,7 @@ include CommonMethods
 
 namespace :migrate do
  task data: :environment do
-   ACustomer.includes(:cars).all.each do |customer|
+   ACustomer.includes(:cars).each(batch_size: 2000) do |customer|
     customer.cars.each do |car|
       
       customer_data = {
