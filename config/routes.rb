@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'dashboard/index'
 
   root :to => 'dashboard#index'
+  get '*path' => redirect('/')
 
   mount Sidekiq::Web => '/sidekiq'
 end
