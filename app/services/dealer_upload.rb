@@ -121,8 +121,18 @@ class DealerUpload
       )
     )
 
+    update_customer_record(merged_data) if merged_data
+
     @new_header ||= merged_data.keys.map(&:humanize)
     merged_data
+  end
+
+  def update_customer_record(merged_data)
+    customer = Customer.where(
+      'record.registration_no' => merged_data['registration_no']
+      ).first
+
+    customer && customer.update(record: merged_data)
   end
 
 end
