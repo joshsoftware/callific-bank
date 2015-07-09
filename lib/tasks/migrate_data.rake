@@ -35,7 +35,8 @@ namespace :migrate do
         .match(REGEXP_REG_NO).try(:captures)
         .try(:join, ' ').to_s || "-NA-#{Time.now.to_i}"
 
-      hash_values_to_string(record)
+      hash_values_to_string(customer_record)
+
       Customer.create!(record: customer_data) rescue false
     end
    end
