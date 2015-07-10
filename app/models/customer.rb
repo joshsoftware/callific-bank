@@ -13,7 +13,7 @@ class Customer
   index({'record.registration_no' => 1}, {unique: true, background: true})
 
   def as_indexed_json(options = {})
-    record
+    record.as_json(except: 'birth_date')
   end
 
 end

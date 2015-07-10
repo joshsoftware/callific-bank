@@ -11,7 +11,7 @@ namespace :migrate do
       }.merge(
         customer.as_json(
           only: [
-            :birth_date, :phone, :mobile, :other_phone, :email, :address,
+            :phone, :mobile, :other_phone, :email, :address,
             :whom_to_contact, :other_email
           ]
         )
