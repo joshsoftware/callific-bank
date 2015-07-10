@@ -121,9 +121,9 @@ class DealerUpload
       )
     )
 
-    update_customer_record(merged_data) if merged_data
+    #update_customer_record(merged_data) if merged_data
 
-    @new_header ||= merged_data.keys.map(&:humanize)
+    @new_header ||= merged_data.keys.map(&:humanize) if merged_data
     merged_data
   end
 
