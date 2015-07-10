@@ -41,9 +41,11 @@ class DealerUpload
   end
 
   def insert_matched_records(matched_records, sheet)
-    sheet.add_row @new_header
-    matched_records.each do |record|
-      sheet.add_row record.values if record
+    if matched_records.any?
+      sheet.add_row @new_header
+      matched_records.each do |record|
+        sheet.add_row record.values if record
+      end
     end
   end
 
