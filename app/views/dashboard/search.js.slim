@@ -1,0 +1,7 @@
+- unless flash[:alert].present?
+  | 
+    $('.search-body').html("#{escape_javascript(render 'search')}");
+- else
+  | 
+    show_notification("<span class= 'fa fa-exclamation-circle '></span> #{flash[:alert]}", 'error');
+    close_noty_in(3000)

@@ -67,6 +67,8 @@ gem 'materialize-sass'
 gem 'simple_form'
 gem 'nested_form'
 gem 'sinatra', :require => nil
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 gem 'elasticsearch', '~> 1.0.5'
 gem 'elasticsearch-model', '~> 0.1.5'
 gem 'elasticsearch-persistence', '~> 0.1.5'

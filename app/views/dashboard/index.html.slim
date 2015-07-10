@@ -1,11 +1,16 @@
-.card.blue-grey.darken-1
+.card.blue-grey.darken-1 style= "min-height: 85vh"
   .card-content.white-text
     .row
       span.card-title
         .h4
-          i.fa.fa-dashboard.text-info
-          |   Your Dashboard
-          hr
+          .col.s6.left-align
+            i.fa.fa-dashboard.text-info
+            |   Your Dashboard
+          .col.s6.right-align
+            .activator style= 'cursor: pointer'
+              i.fa.fa-search
+              | Search
+    hr
     .row
       .col.s8.offset-s2
         = form_tag dashboard_import_path, class: 'form', id: 'upload_form', multipart: true do |f|
@@ -41,4 +46,16 @@
                   strong.text-info
                     | Demo Template 
             .col.s6.right-align
-              = button_tag "Upload", class: 'btn waves-effect waves-light btn-large', id: 'dashboard_upload_btn'
+              = button_tag "Upload", class: 'btn waves-effect waves-light btn-large', id: 'dashboard_upload_btn'  
+    
+  .card-reveal
+    span.card-title.card-title.grey-text.text-darken-4
+      i.fa.fa-times.right
+    .row
+      .col.s6
+        = form_tag dashboard_search_path, html:{class: 'search_bar'}, remote: true do |f|
+          .input-field
+            i.fa.fa-search.prefix
+            = text_field_tag :query
+            label for="query"  Search here
+    .search-body

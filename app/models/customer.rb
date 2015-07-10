@@ -16,4 +16,19 @@ class Customer
     record.as_json(except: 'birth_date')
   end
 
+  def self.search(query)
+    @@customer_count ||= self.count
+    __elasticsearch__.search(
+      {
+        size: @@customer_count,
+        query: {
+          simple_query_string: {
+            query: query,
+            default_operator: 'and'
+          }
+        }
+      }
+    )
+  end
+
 end

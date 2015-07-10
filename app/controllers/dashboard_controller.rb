@@ -24,6 +24,14 @@ class DashboardController < ApplicationController
     redirect_to :back
   end
 
+  def search
+    if params[:query].present?
+      @search_results = Customer.search(params[:query]).page(params[:page])
+    else
+      flash[:alert] = 'Empty query not allowed'
+    end
+  end
+
   private
 
   def rto_sheet_upload(file)

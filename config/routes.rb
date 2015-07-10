@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   
   post 'dashboard/import'
   get 'dashboard/index'
+  match 'dashboard/search', via: [:get, :post]
 
   root :to => 'dashboard#index'
 
