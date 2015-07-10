@@ -31,12 +31,12 @@ section
             - @search_results.each do |record|
               tr 
                 td= record.customer_name
-                td= record.car_make
-                td= record.car_model
+                td= record.try(:car_make)
+                td= record.try(:car_model)
                 td= record.registration_no
                 td= record.try(:manufacture_month) || '-NA-'
                 td= record.try(:manufacture_year) || '-NA-'
-                td= record.primary_phone
+                td= record.try :phone
                 td= record.try(:other_phone) || '-NA-'
                 td= record.mobile
       /!.center-align
