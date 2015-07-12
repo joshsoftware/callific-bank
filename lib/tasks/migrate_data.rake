@@ -43,10 +43,10 @@ namespace :migrate do
 
       hash_values_to_string(customer_data)
 
-      customer = Customer.where('record.registration_no' => customer_data['registration_no']).first
+      e_customer = Customer.where('record.registration_no' => customer_data['registration_no']).first
 
-      if customer
-        customer.update(record: customer_data)
+      if e_customer
+        e_customer.update(record: customer_data)
       else
         Customer.create!(record: customer_data) rescue false
       end
