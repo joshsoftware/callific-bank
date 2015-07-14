@@ -52,43 +52,25 @@ class DealerUpload
   def find_match_and_return_merged_data(record)
     match_found = nil
 
-    ['must', 'should'].each do |condition|
-      matches = Customer.__elasticsearch__.search(
-        {
-          query: {
-            bool: {
-              condition => [
-                {
-                  bool: {
-                    must: partial_matching_fields(
-                      record,
-                      [
-                        ['customer_name', '0.7'],
-                        ['car_model', '0.7'],
-                        ['address', '0.5']
-                      ]
-                    ),
-                    boost: 1
-                  }
-                },
-                {
-                  query_string: {
-                    query: regex_query_for(record, ['chasis_no', 'engine_no']),
-                    boost: 100
-                  }
-                }
-              ]
+    matches = Customer.__elasticsearch__.search(
+      {
+        query: {
+          bool: {
+            must: partial_matching_fields(
+                record,
+                [
+                  ['customer_name', '0.5'],
+                  ['address', '0.5']
+                ]
+              )
             }
           }
         }
-      )
+      }
+    )
 
-      matches_count = matches.count
-      
-      if matches_count == 1 || matches_count > 1
-        match_found = matches.first and break
-      end
-    end
+    matches_count = matches.count
+    match_found = matches.first if matches_count >= 1
 
     merge_matched_and_rto_data(match_found, record)
   end
