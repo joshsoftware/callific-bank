@@ -12,9 +12,10 @@ section
         table.responsive-table.striped
           thead.red.lighten-1.white-text
             th Customer
+            th Registration No
             th Make
             th Model
-            th Registration No
+            th Address
             th MFT. month
             th Mft. year
             th Primary Phone
@@ -31,9 +32,10 @@ section
             - @search_results.each do |record|
               tr 
                 td= record.customer_name
+                td= record.registration_no
                 td= record.try(:car_make)
                 td= record.try(:car_model)
-                td= record.registration_no
+                td= record.try(:address)
                 td= record.try(:manufacture_month) || '-NA-'
                 td= record.try(:manufacture_year) || '-NA-'
                 td= record.try :phone
