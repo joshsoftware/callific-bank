@@ -57,13 +57,12 @@ class DealerUpload
         query: {
           bool: {
             must: partial_matching_fields(
-                record,
-                [
-                  ['customer_name', '0.5'],
-                  ['address', '0.5']
-                ]
-              )
-            }
+              record,
+              [
+                ['customer_name', '0.5'],
+                ['address', '0.5']
+              ]
+            )
           }
         }
       }
